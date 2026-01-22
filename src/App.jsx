@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { initUsers } from "./store/userSlice";
 import { initProducts } from "./store/productSlice";
 import { initOrders } from "./store/orderSlice";
@@ -51,7 +51,7 @@ function App() {
   }, [theme]);
 
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <div className="w-full flex h-screen bg-surface-container-low text-on-surface font-sans selection:bg-primary/20 transition-colors duration-300">
         <ErrorBoundary>
           <ConfirmProvider>
@@ -82,7 +82,7 @@ function App() {
           </ConfirmProvider>
         </ErrorBoundary>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
