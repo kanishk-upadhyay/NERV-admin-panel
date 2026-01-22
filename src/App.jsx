@@ -51,7 +51,7 @@ function App() {
   }, [theme]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="w-full flex h-screen bg-surface-container-low text-on-surface font-sans selection:bg-primary/20 transition-colors duration-300">
         <ErrorBoundary>
           <ConfirmProvider>
