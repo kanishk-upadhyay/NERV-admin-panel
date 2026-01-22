@@ -1,0 +1,333 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/**
+ * Material 3 Expressive Theme
+ *
+ * Design tokens for light and dark themes following Material Design 3 guidelines.
+ * Colors use RGB values for Tailwind's alpha channel support.
+ */
+
+@layer base {
+    :root {
+        --color-primary: 103 80 164;
+        --color-primary-container: 234 221 255;
+        --color-on-primary: 255 255 255;
+        --color-on-primary-container: 33 0 93;
+        --color-secondary: 255 107 157;
+        --color-secondary-container: 255 216 228;
+        --color-on-secondary: 255 255 255;
+        --color-on-secondary-container: 62 0 29;
+
+        --color-tertiary: 0 106 96;
+        --color-tertiary-container: 178 241 232;
+        --color-on-tertiary: 255 255 255;
+        --color-on-tertiary-container: 0 32 26;
+        --color-background: 254 247 255;
+        --color-on-background: 29 27 32;
+        --color-surface: 255 255 255;
+        --color-on-surface: 29 27 32;
+        --color-surface-variant: 231 224 236;
+        --color-on-surface-variant: 73 69 79;
+        --color-surface-container-low: 247 242 250;
+        --color-surface-container: 243 237 247;
+        --color-surface-container-high: 236 228 232;
+        --color-error: 179 38 30;
+        --color-error-container: 249 222 220;
+        --color-on-error: 255 255 255;
+        --color-on-error-container: 65 14 11;
+
+        --color-success: 0 108 76;
+        --color-success-container: 115 250 196;
+        --color-on-success: 255 255 255;
+        --color-on-success-container: 0 33 20;
+        --color-outline: 121 116 126;
+        --color-outline-variant: 202 196 208;
+    }
+
+    [data-theme="dark"] {
+        --color-primary: 208 188 255;
+        --color-primary-container: 79 55 139;
+        --color-on-primary: 56 30 114;
+        --color-on-primary-container: 234 221 255;
+
+        /* Secondary - Lighter Pink */
+        --color-secondary: 255 183 205;
+        --color-secondary-container: 128 27 86;
+        --color-on-secondary: 99 9 61;
+        --color-on-secondary-container: 255 216 228;
+        --color-tertiary: 81 219 204;
+        --color-tertiary-container: 0 80 72;
+        --color-on-tertiary: 0 55 49;
+        --color-on-tertiary-container: 178 241 232;
+        --color-background: 20 18 24;
+        --color-on-background: 230 225 229;
+        --color-surface: 20 18 24;
+        --color-on-surface: 230 225 229;
+        --color-surface-variant: 73 69 79;
+        --color-on-surface-variant: 202 196 208;
+        --color-surface-container-low: 29 27 32;
+        --color-surface-container: 33 31 38;
+        --color-surface-container-high: 43 41 48;
+        --color-error: 242 184 181;
+        --color-error-container: 140 29 24;
+        --color-on-error: 96 20 16;
+        --color-on-error-container: 249 222 220;
+
+        --color-success: 85 221 166;
+        --color-success-container: 0 81 56;
+        --color-on-success: 0 56 39;
+        --color-on-success-container: 115 250 196;
+        --color-outline: 147 143 153;
+        --color-outline-variant: 73 69 79;
+    }
+
+    body {
+        @apply bg-background text-on-surface font-sans antialiased;
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display font-medium text-on-surface;
+    }
+
+    code {
+        @apply font-mono bg-surface-variant/30 px-1 py-0.5 rounded text-sm text-tertiary;
+    }
+}
+
+/*
+   Animations & Keyframes
+   Tailwind Utilities can handle most animations, but we can define custom ones here
+   if they are too complex for the config.
+*/
+
+/* Glassmorphism Utility */
+.glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+[data-theme="dark"] .glass {
+    @apply bg-black/20 border-white/10;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-surface-container;
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        135deg,
+        rgb(var(--color-primary)),
+        rgb(var(--color-secondary))
+    );
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--color-primary), 0.8),
+        rgba(var(--color-secondary), 0.8)
+    );
+    background-clip: content-box;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-primary))
+        rgb(var(--color-surface-container));
+}
+
+/* Touch-Friendly Utilities */
+
+/* Minimum touch target size (44x44px iOS, 48x48px Android) */
+.touch-target {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.touch-target-lg {
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent text selection on touch */
+.touch-select-none {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch manipulation for better touch response */
+.touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Active state for touch feedback */
+.touch-active:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+    transition:
+        transform 0.1s ease-out,
+        opacity 0.1s ease-out;
+}
+
+/* Prevent accidental zoom on double tap */
+.touch-no-zoom {
+    touch-action: pan-x pan-y;
+}
+
+/* Smooth momentum scrolling for iOS */
+.touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* Touch-friendly spacing */
+.touch-spacing-y > * + * {
+    margin-top: 1rem;
+}
+
+.touch-spacing-x > * + * {
+    margin-left: 1rem;
+}
+
+/* Swipe hint animation */
+@keyframes swipe-hint {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+}
+
+.swipe-hint {
+    animation: swipe-hint 2s ease-in-out infinite;
+}
+
+/* Ripple animation */
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+.animate-ripple {
+    animation: ripple 600ms ease-out;
+}
+
+/* Pull-to-refresh animations */
+@keyframes pull-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.pull-bounce {
+    animation: pull-bounce 1s ease-in-out infinite;
+}
+
+/* Long press feedback */
+@keyframes long-press-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+.long-press-active {
+    animation: long-press-pulse 0.5s ease-in-out;
+}
+
+/* Touch-friendly transitions */
+.touch-transition {
+    transition:
+        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover {
+        transform: none;
+    }
+
+    .hover\:shadow-elevation-3:hover {
+        box-shadow: none;
+    }
+}
+
+/* Touch-friendly button base */
+.btn-touch {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.btn-touch:active {
+    transform: scale(0.95);
+}
+
+/* Fade in animation for better perceived performance */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+}

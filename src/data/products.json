@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "EVA Unit-01",
+    "category": "Mecha",
+    "price": 15000000,
+    "stock": 1,
+    "sold": 0,
+    "description": "Purple humanoid weapon"
+  },
+  {
+    "id": 2,
+    "name": "EVA Unit-02",
+    "category": "Mecha",
+    "price": 14500000,
+    "stock": 1,
+    "sold": 0,
+    "description": "Red production model"
+  },
+  {
+    "id": 3,
+    "name": "EVA Unit-00",
+    "category": "Mecha",
+    "price": 12000000,
+    "stock": 1,
+    "sold": 1,
+    "description": "Blue prototype"
+  },
+  {
+    "id": 4,
+    "name": "Entry Plug",
+    "category": "Components",
+    "price": 500000,
+    "stock": 15,
+    "sold": 3,
+    "description": "Pilot interface system"
+  },
+  {
+    "id": 5,
+    "name": "AT Field Generator",
+    "category": "Components",
+    "price": 2500000,
+    "stock": 8,
+    "sold": 2,
+    "description": "Absolute Terror Field technology"
+  },
+  {
+    "id": 6,
+    "name": "Progressive Knife",
+    "category": "Weapons",
+    "price": 750000,
+    "stock": 12,
+    "sold": 5,
+    "description": "High-frequency blade"
+  },
+  {
+    "id": 7,
+    "name": "Pallet Rifle",
+    "category": "Weapons",
+    "price": 1200000,
+    "stock": 6,
+    "sold": 3,
+    "description": "Standard issue firearm"
+  },
+  {
+    "id": 8,
+    "name": "Positron Rifle",
+    "category": "Weapons",
+    "price": 8500000,
+    "stock": 2,
+    "sold": 1,
+    "description": "High-powered sniper weapon"
+  },
+  {
+    "id": 9,
+    "name": "Plug Suit",
+    "category": "Equipment",
+    "price": 50000,
+    "stock": 25,
+    "sold": 12,
+    "description": "Pilot interface suit"
+  },
+  {
+    "id": 10,
+    "name": "Umbilical Cable",
+    "category": "Components",
+    "price": 150000,
+    "stock": 20,
+    "sold": 8,
+    "description": "Power supply cable"
+  },
+  {
+    "id": 11,
+    "name": "LCL Liquid",
+    "category": "Supplies",
+    "price": 5000,
+    "stock": 500,
+    "sold": 250,
+    "description": "Oxygenated perfluorocarbon"
+  },
+  {
+    "id": 12,
+    "name": "MAGI System Module",
+    "category": "Technology",
+    "price": 25000000,
+    "stock": 3,
+    "sold": 1,
+    "description": "Supercomputer component"
+  }
+]
