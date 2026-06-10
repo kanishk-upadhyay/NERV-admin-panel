@@ -166,8 +166,7 @@ const Products = () => {
         toast.success(`Added "${newProduct.name}" to inventory!`);
       }
       handleCloseModal();
-    } catch (error) {
-      console.error("Failed to save product:", error);
+    } catch {
       toast.error("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
