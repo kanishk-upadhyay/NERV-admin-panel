@@ -51,11 +51,12 @@ const Users = () => {
   const [editingUser, setEditingUser] = useState(null);
 
   // Filter users
+  const searchLower = searchQuery.toLowerCase();
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchQuery.toLowerCase());
+      user.name.toLowerCase().includes(searchLower) ||
+      user.email.toLowerCase().includes(searchLower) ||
+      user.role.toLowerCase().includes(searchLower);
 
     const matchesStatus =
       statusFilter === "all" || user.status === statusFilter;
