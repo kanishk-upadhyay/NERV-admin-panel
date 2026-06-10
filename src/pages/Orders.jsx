@@ -21,9 +21,10 @@ const Orders = () => {
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const lowerSearchQuery = searchQuery.toLowerCase();
   const filteredOrders = orders.filter((order) => {
     const matchesSearch =
-      order.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      order.customerName.toLowerCase().includes(lowerSearchQuery) ||
       order.id.toString().includes(searchQuery);
 
     const matchesStatus =
