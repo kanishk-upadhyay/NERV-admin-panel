@@ -21,10 +21,10 @@ export const selectInactiveUsers = createSelector(
   (users) => users.filter((user) => user.status === "inactive").length,
 );
 
-export const selectUserById = (userId) =>
-  createSelector([selectAllUsers], (users) =>
-    users.find((user) => user.id === userId),
-  );
+export const selectUserById = createSelector(
+  [selectAllUsers, (state, userId) => userId],
+  (users, userId) => users.find((user) => user.id === userId)
+);
 
 /**
  * Product Selectors
