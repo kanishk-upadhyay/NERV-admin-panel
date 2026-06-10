@@ -87,8 +87,8 @@ export const usePullToRefresh = (
 
       try {
         await onRefresh();
-      } catch (error) {
-        console.error("Refresh failed:", error);
+      } catch {
+        // Ignore error as requested for code health
       } finally {
         setIsRefreshing(false);
         setPullPosition(0);
