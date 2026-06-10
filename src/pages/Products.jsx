@@ -73,10 +73,11 @@ const Products = () => {
   const [editingProduct, setEditingProduct] = useState(null);
 
   // Filter products
+  const lowerSearchQuery = searchQuery.toLowerCase();
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchQuery.toLowerCase());
+      product.name.toLowerCase().includes(lowerSearchQuery) ||
+      product.category.toLowerCase().includes(lowerSearchQuery);
 
     const matchesCategory =
       categoryFilter === "all" || product.category === categoryFilter;
