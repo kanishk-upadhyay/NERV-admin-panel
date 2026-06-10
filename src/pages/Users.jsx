@@ -123,8 +123,7 @@ const Users = () => {
         toast.success(`User "${newUser.name}" created successfully`);
       }
       handleCloseModal();
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
