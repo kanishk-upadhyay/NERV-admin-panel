@@ -53,3 +53,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  deploy-surge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and Build for Surge
+        run: |
+          npm ci
+          npm run build -- --base=/
+          cp dist/index.html dist/200.html
+
+      - name: Deploy to Surge
+        run: |
+          npx --yes surge ./dist kanishk-nerv.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}

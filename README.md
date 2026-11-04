@@ -1,5 +1,8 @@
 # NERV Admin Panel ✨
 
+[![Live Demo](https://img.shields.io/badge/demo-surge-purple?style=flat-square)](https://kanishk-nerv.surge.sh)
+[![GitHub Pages](https://img.shields.io/badge/mirror-gh--pages-blue?style=flat-square)](https://kanishk-upadhyay.github.io/NERV-admin-panel/)
+
 A **state management gauntlet** built with React and Redux Toolkit, featuring **Material 3 Expressive** design language. This isn't a todo app for toddlers—it's a fully-featured, vibrant, and delightful admin panel with rigid architecture and proper state management.
 
 ## 🎨 Design System
