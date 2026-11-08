@@ -207,7 +207,7 @@ const Orders = () => {
               {sortedOrders.length === 0 ? (
                 <tr>
                   <td
-                    colSpan="6"
+                    colSpan="7"
                     className="px-6 py-12 text-center text-on-surface-variant italic"
                   >
                     <span className="text-4xl block mb-2">📦</span>

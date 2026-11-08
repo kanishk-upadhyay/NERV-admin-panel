@@ -24,14 +24,30 @@ export const useSortableData = (items, config = null) => {
         let aValue = a[sortConfig.key];
         let bValue = b[sortConfig.key];
 
-        // Numeric comparison for numbers
-        if (!isNaN(parseFloat(aValue)) && !isNaN(parseFloat(bValue))) {
-          aValue = parseFloat(aValue);
-          bValue = parseFloat(bValue);
+        // Check if values are date strings (e.g. YYYY-MM-DD)
+        const isDateString = (v) =>
+          typeof v === "string" &&
+          /^\d{4}[-/]\d{1,2}[-/]\d{1,2}/.test(v) &&
+          !isNaN(Date.parse(v));
+
+        if (isDateString(aValue) && isDateString(bValue)) {
+          aValue = new Date(aValue).getTime();
+          bValue = new Date(bValue).getTime();
+        } else if (
+          typeof aValue === "number" ||
+          typeof bValue === "number" ||
+          (!isNaN(Number(aValue)) &&
+            !isNaN(Number(bValue)) &&
+            aValue !== "" &&
+            bValue !== "")
+        ) {
+          // Numeric comparison for numbers
+          aValue = Number(aValue);
+          bValue = Number(bValue);
         } else {
           // Case-insensitive string comparison
-          aValue = aValue ? aValue.toString().toLowerCase() : "";
-          bValue = bValue ? bValue.toString().toLowerCase() : "";
+          aValue = aValue != null ? aValue.toString().toLowerCase() : "";
+          bValue = bValue != null ? bValue.toString().toLowerCase() : "";
         }
 
         if (aValue < bValue) {
