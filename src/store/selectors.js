@@ -83,6 +83,8 @@ export const selectAverageProductPrice = createSelector(
  */
 
 export const selectTheme = (state) => state.ui.theme;
+export const selectSimulatedLatency = (state) => state.ui.simulatedLatency;
+export const selectSimulateFailure = (state) => state.ui.simulateFailure;
 
 /**
  * Auth Selectors

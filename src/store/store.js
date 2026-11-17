@@ -10,7 +10,7 @@ import orderReducer from "./orderSlice";
 
 const persistConfig = {
   key: "nerv-admin-root",
-  version: 2,
+  version: 3,
   storage,
   whitelist: ["auth", "users", "products", "ui", "orders"],
 };

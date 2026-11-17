@@ -2,10 +2,11 @@
 @config "../tailwind.config.js";
 
 /**
- * Material 3 Expressive Theme
+ * Material 3 Expressive & Authentic NERV / MAGI System Theme
  *
- * Design tokens for light and dark themes following Material Design 3 guidelines.
- * Colors use RGB values for Tailwind's alpha channel support.
+ * Design tokens for light, dark, and MAGI terminal themes.
+ * MAGI mode uses authentic Evangelion mechanical geometry, high contrast,
+ * sharp chamfers, and crisp typography without blurry scanlines.
  */
 
 @layer base {
@@ -51,7 +52,6 @@
         --color-on-primary: 56 30 114;
         --color-on-primary-container: 234 221 255;
 
-        /* Secondary - Lighter Pink */
         --color-secondary: 255 183 205;
         --color-secondary-container: 128 27 86;
         --color-on-secondary: 99 9 61;
@@ -82,218 +82,65 @@
         --color-outline-variant: 73 69 79;
     }
 
-    body {
-        @apply bg-background text-on-surface font-sans antialiased;
-        transition:
-            background-color 0.3s ease,
-            color 0.3s ease,
-            border-color 0.3s ease;
+    [data-theme="magi"] {
+        --color-primary: 255 160 0;
+        --color-primary-container: 45 28 0;
+        --color-on-primary: 0 0 0;
+        --color-on-primary-container: 255 213 79;
+
+        --color-secondary: 255 69 58;
+        --color-secondary-container: 74 14 11;
+        --color-on-secondary: 0 0 0;
+        --color-on-secondary-container: 255 180 176;
+
+        --color-tertiary: 0 229 255;
+        --color-tertiary-container: 0 56 64;
+        --color-on-tertiary: 0 0 0;
+        --color-on-tertiary-container: 153 247 255;
+
+        --color-background: 10 10 12;
+        --color-on-background: 248 250 252;
+        --color-surface: 15 17 22;
+        --color-on-surface: 248 250 252;
+
+        --color-surface-variant: 28 32 40;
+        --color-on-surface-variant: 226 232 240;
+        --color-surface-container-low: 8 9 12;
+        --color-surface-container: 18 20 26;
+        --color-surface-container-high: 28 32 42;
+
+        --color-error: 255 69 58;
+        --color-error-container: 80 12 10;
+        --color-on-error: 0 0 0;
+        --color-on-error-container: 255 205 210;
+
+        --color-success: 0 230 118;
+        --color-success-container: 0 56 28;
+        --color-on-success: 0 0 0;
+        --color-on-success-container: 178 255 200;
+
+        --color-outline: 255 160 0;
+        --color-outline-variant: 60 45 15;
     }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply font-display font-medium text-on-surface;
-    }
-
-    code {
-        @apply font-mono bg-surface-variant/30 px-1 py-0.5 rounded text-sm text-tertiary;
-    }
 }
 
-/*
-   Animations & Keyframes
-   Tailwind Utilities can handle most animations, but we can define custom ones here
-   if they are too complex for the config.
-*/
-
-/* Glassmorphism Utility */
-.glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
-[data-theme="dark"] .glass {
-    @apply bg-black/20 border-white/10;
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 14px;
-    height: 14px;
-}
-
-::-webkit-scrollbar-track {
-    @apply bg-surface-container;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-outline-variant) / 0.5);
     border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        135deg,
-        rgb(var(--color-primary)),
-        rgb(var(--color-secondary))
-    );
-    border-radius: 9999px;
-    border: 3px solid transparent;
-    background-clip: content-box;
-    transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-        135deg,
-        rgba(var(--color-primary), 0.8),
-        rgba(var(--color-secondary), 0.8)
-    );
-    background-clip: content-box;
-}
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(var(--color-primary))
-        rgb(var(--color-surface-container));
-}
-
-/* Touch-Friendly Utilities */
-
-/* Minimum touch target size (44x44px iOS, 48x48px Android) */
-.touch-target {
-    min-width: 44px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.touch-target-lg {
-    min-width: 48px;
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Prevent text selection on touch */
-.touch-select-none {
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Touch manipulation for better touch response */
-.touch-manipulation {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Active state for touch feedback */
-.touch-active:active {
-    transform: scale(0.95);
-    opacity: 0.9;
-    transition:
-        transform 0.1s ease-out,
-        opacity 0.1s ease-out;
-}
-
-/* Prevent accidental zoom on double tap */
-.touch-no-zoom {
-    touch-action: pan-x pan-y;
-}
-
-/* Smooth momentum scrolling for iOS */
-.touch-scroll {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-}
-
-/* Touch-friendly spacing */
-.touch-spacing-y > * + * {
-    margin-top: 1rem;
-}
-
-.touch-spacing-x > * + * {
-    margin-left: 1rem;
-}
-
-/* Swipe hint animation */
-@keyframes swipe-hint {
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(-10px);
-    }
-}
-
-.swipe-hint {
-    animation: swipe-hint 2s ease-in-out infinite;
-}
-
-/* Ripple animation */
-@keyframes ripple {
-    to {
-        transform: translate(-50%, -50%) scale(4);
-        opacity: 0;
-    }
-}
-
-.animate-ripple {
-    animation: ripple 600ms ease-out;
-}
-
-/* Pull-to-refresh animations */
-@keyframes pull-bounce {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-.pull-bounce {
-    animation: pull-bounce 1s ease-in-out infinite;
-}
-
-/* Long press feedback */
-@keyframes long-press-pulse {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-    }
-}
-
-.long-press-active {
-    animation: long-press-pulse 0.5s ease-in-out;
-}
-
-/* Touch-friendly transitions */
-.touch-transition {
-    transition:
-        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Disable hover effects on touch devices */
-@media (hover: none) and (pointer: coarse) {
-    .hover\:scale-105:hover {
-        transform: none;
-    }
-
-    .hover\:shadow-elevation-3:hover {
-        box-shadow: none;
-    }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-outline));
 }
 
 /* Touch-friendly button base */
@@ -316,11 +163,10 @@
     transform: scale(0.95);
 }
 
-/* Fade in animation for better perceived performance */
 @keyframes fade-in {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(6px);
     }
     to {
         opacity: 1;
@@ -329,5 +175,14 @@
 }
 
 .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.25s ease-out;
+}
+
+/* Authentic Evangelion Mechanical Framing & Hazard Styling */
+.magi-hex-card {
+    clip-path: polygon(0 8px, 8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.magi-hazard-stripes {
+    background-image: repeating-linear-gradient(-45deg, #ffaa00, #ffaa00 10px, #000 10px, #000 20px);
 }

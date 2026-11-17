@@ -18,7 +18,7 @@ const SearchBar = ({ value, onChange, placeholder = "Search..." }) => {
       </div>
       <input
         type="text"
-        className="block w-full pl-10 pr-3 py-2.5 border-2 border-outline-variant/30 rounded-full leading-5 bg-surface-container text-on-surface placeholder-on-surface-variant/70 focus:outline-none focus:bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300 shadow-sm hover:shadow-md"
+        className="block w-full pl-10 pr-3 py-2.5 border-2 border-outline-variant/30 rounded-full leading-5 bg-surface-container text-on-surface placeholder-on-surface-variant/70 focus:outline-none focus:bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300 shadow-sm hover:shadow-md text-base sm:text-sm"
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}

@@ -27,9 +27,21 @@ const orderSlice = createSlice({
         (order) => order.id !== action.payload,
       );
     },
+    bulkUpdateOrderStatus: (state, action) => {
+      const { ids, status } = action.payload;
+      state.orders.forEach((order) => {
+        if (ids.includes(order.id)) {
+          order.status = status;
+        }
+      });
+    },
+    bulkDeleteOrders: (state, action) => {
+      const ids = action.payload;
+      state.orders = state.orders.filter((order) => !ids.includes(order.id));
+    },
   },
 });
 
-export const { initOrders, updateOrderStatus, deleteOrder } =
+export const { initOrders, updateOrderStatus, deleteOrder, bulkUpdateOrderStatus, bulkDeleteOrders } =
   orderSlice.actions;
 export default orderSlice.reducer;

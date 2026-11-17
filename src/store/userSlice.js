@@ -35,9 +35,28 @@ const userSlice = createSlice({
         user.status = user.status === "active" ? "inactive" : "active";
       }
     },
+    bulkUpdateUserStatus: (state, action) => {
+      const { ids, status } = action.payload;
+      state.users.forEach((user) => {
+        if (ids.includes(user.id)) {
+          user.status = status;
+        }
+      });
+    },
+    bulkDeleteUsers: (state, action) => {
+      const ids = action.payload;
+      state.users = state.users.filter((user) => !ids.includes(user.id));
+    },
   },
 });
 
-export const { initUsers, addUser, updateUser, deleteUser, toggleUserStatus } =
-  userSlice.actions;
+export const {
+  initUsers,
+  addUser,
+  updateUser,
+  deleteUser,
+  toggleUserStatus,
+  bulkUpdateUserStatus,
+  bulkDeleteUsers,
+} = userSlice.actions;
 export default userSlice.reducer;

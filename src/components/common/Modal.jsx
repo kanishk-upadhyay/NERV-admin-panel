@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../../store/selectors";
 
 /**
  * Modal Component
@@ -15,6 +17,7 @@ import { createPortal } from "react-dom";
  */
 const Modal = ({ isOpen, onClose, title, children, maxWidth = "max-w-lg" }) => {
   const modalRef = useRef(null);
+  const theme = useSelector(selectTheme);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -52,18 +55,27 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = "max-w-lg" }) => {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className={`w-full ${maxWidth} bg-surface rounded-2xl shadow-xl border border-outline-variant/20 animate-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col outline-none`}
+        className={`w-full ${maxWidth} bg-surface shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col outline-none ${
+          theme === "magi"
+            ? "border-2 border-primary font-mono magi-hex-card shadow-[0_0_25px_rgba(255,153,0,0.15)]"
+            : "rounded-2xl border border-outline-variant/30 shadow-elevation-3"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-6 border-b border-outline-variant/10 shrink-0">
-          <h2
-            id="modal-title"
-            className="text-2xl font-display font-bold text-primary"
-          >
-            {title}
-          </h2>
+        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-outline-variant/20 shrink-0">
+          <div className="flex items-center gap-2">
+            {theme === "magi" && <span className="w-2.5 h-2.5 bg-primary animate-pulse" />}
+            <h2
+              id="modal-title"
+              className={`text-xl sm:text-2xl font-bold text-primary ${
+                theme === "magi" ? "font-mono tracking-wider uppercase" : "font-display"
+              }`}
+            >
+              {title}
+            </h2>
+          </div>
           <button
-            className="p-2 rounded-full hover:bg-error-container hover:text-error transition-colors text-on-surface-variant"
+            className="p-1.5 rounded-lg hover:bg-error-container/30 hover:text-error transition-colors text-on-surface-variant font-mono text-sm border border-outline-variant/30 cursor-pointer"
             onClick={onClose}
             aria-label="Close modal"
           >

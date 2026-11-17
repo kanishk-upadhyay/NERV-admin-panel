@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../store/selectors";
 
 /**
  * Sidebar Navigation Component
@@ -10,6 +12,35 @@ import { NavLink } from "react-router-dom";
  * @param {Function} onClose - Callback to close sidebar (mobile only)
  */
 const Sidebar = ({ isOpen, onClose }) => {
+  const theme = useSelector(selectTheme);
+
+  const navItems = [
+    {
+      to: "/dashboard",
+      icon: "📊",
+      label: "Dashboard",
+      magiCode: "[01] TACTICAL TELEMETRY",
+    },
+    {
+      to: "/users",
+      icon: "👥",
+      label: "Personnel",
+      magiCode: "[02] PERSONNEL DIRECTORY",
+    },
+    {
+      to: "/products",
+      icon: "📦",
+      label: "Armory & Products",
+      magiCode: "[03] ORDNANCE INVENTORY",
+    },
+    {
+      to: "/orders",
+      icon: "🛒",
+      label: "Requisitions",
+      magiCode: "[04] SUPPLY MANIFESTS",
+    },
+  ];
+
   return (
     <>
       <div
@@ -20,78 +51,46 @@ const Sidebar = ({ isOpen, onClose }) => {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50  bg-surface-container shadow-elevation-1 transition-all duration-300 ease-in-out lg:static lg:shadow-none overflow-hidden ${
+        className={`fixed inset-y-0 left-0 z-50 bg-surface-container border-r border-outline-variant/20 shadow-elevation-1 transition-all duration-300 ease-in-out lg:static lg:shadow-none overflow-hidden ${
           isOpen
             ? "translate-x-0 w-72"
             : "-translate-x-full w-0 lg:translate-x-0 lg:w-0 lg:hidden"
-        }`}
+        } ${theme === "magi" ? "font-mono" : ""}`}
       >
-        <div className="flex items-center h-20 px-6 border-b border-outline-variant/20">
-          <h2 className="text-xl font-display font-bold text-primary">
-            Navigation
-          </h2>
+        <div className="flex items-center justify-between h-20 px-6 border-b border-outline-variant/20">
+          <div className="flex items-center gap-2">
+            {theme === "magi" && <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />}
+            <h2 className="text-sm font-bold uppercase tracking-wider text-primary font-mono">
+              {theme === "magi" ? "MAGI-01 ROUTING" : "Navigation"}
+            </h2>
+          </div>
+          <span className="text-[11px] font-mono text-on-surface-variant px-1.5 py-0.5 rounded bg-surface border border-outline-variant/30">
+            v2.4
+          </span>
         </div>
 
-        <nav className="flex flex-col gap-2 p-4">
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `flex items-center gap-4 px-6 py-4 rounded-full font-medium transition-all duration-300 ${
-                isActive
-                  ? "bg-secondary-container text-secondary-on-container shadow-sm"
-                  : "text-on-surface hover:bg-surface-variant/50 hover:pl-7"
-              }`
-            }
-            onClick={onClose}
-          >
-            <span className="text-xl">📊</span>
-            Dashboard
-          </NavLink>
-
-          <NavLink
-            to="/users"
-            className={({ isActive }) =>
-              `flex items-center gap-4 px-6 py-4 rounded-full font-medium transition-all duration-300 ${
-                isActive
-                  ? "bg-secondary-container text-secondary-on-container shadow-sm"
-                  : "text-on-surface hover:bg-surface-variant/50 hover:pl-7"
-              }`
-            }
-            onClick={onClose}
-          >
-            <span className="text-xl">👥</span>
-            Users
-          </NavLink>
-
-          <NavLink
-            to="/products"
-            className={({ isActive }) =>
-              `flex items-center gap-4 px-6 py-4 rounded-full font-medium transition-all duration-300 ${
-                isActive
-                  ? "bg-secondary-container text-secondary-on-container shadow-sm"
-                  : "text-on-surface hover:bg-surface-variant/50 hover:pl-7"
-              }`
-            }
-            onClick={onClose}
-          >
-            <span className="text-xl">📦</span>
-            Products
-          </NavLink>
-
-          <NavLink
-            to="/orders"
-            className={({ isActive }) =>
-              `flex items-center gap-4 px-6 py-4 rounded-full font-medium transition-all duration-300 ${
-                isActive
-                  ? "bg-secondary-container text-secondary-on-container shadow-sm"
-                  : "text-on-surface hover:bg-surface-variant/50 hover:pl-7"
-              }`
-            }
-            onClick={onClose}
-          >
-            <span className="text-xl">🛒</span>
-            Orders
-          </NavLink>
+        <nav className="flex flex-col gap-1.5 p-3 sm:p-4">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all text-xs sm:text-sm ${
+                  isActive
+                    ? theme === "magi"
+                      ? "bg-primary/20 text-primary border border-primary/50 font-bold font-mono shadow-xs"
+                      : "bg-primary text-on-primary font-bold shadow-xs"
+                    : "text-on-surface hover:bg-surface-variant/40"
+                }`
+              }
+              onClick={onClose}
+            >
+              <span className="text-lg shrink-0">{item.icon}</span>
+              <span className="truncate">
+                {theme === "magi" ? item.magiCode : item.label}
+              </span>
+            </NavLink>
+          ))}
         </nav>
       </aside>
     </>

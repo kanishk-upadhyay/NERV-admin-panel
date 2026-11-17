@@ -1,8 +1,16 @@
 {
-  "name": "admin",
+  "name": "nerv-admin-panel",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "NERV Operations Command & MAGI System Tactical Admin Terminal featuring real-time telemetry, order fulfillment manifests, and time-series telemetry charts.",
+  "author": "Kanishk Upadhyay <66172350+kanishk-upadhyay@users.noreply.github.com>",
+  "license": "MIT",
+  "homepage": "https://kanishk-upadhyay.github.io/NERV-admin-panel/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kanishk-upadhyay/NERV-admin-panel.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,11 +19,13 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
+    "lucide-react": "^1.70.0",
     "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.12.0",
+    "recharts": "^3.10.1",
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {

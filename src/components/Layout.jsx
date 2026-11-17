@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../store/selectors";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
 /**
  * Main Layout - Provides the shell with responsive navigation.
+ * In MAGI mode, uses crisp mechanical typography without blurry scanlines.
  */
 const Layout = () => {
-  // Start with sidebar open on desktop, closed on mobile
+  const theme = useSelector(selectTheme);
   const [isSidebarOpen, setIsSidebarOpen] = useState(
     typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
   );
@@ -34,7 +37,11 @@ const Layout = () => {
   };
 
   return (
-    <div className="w-full flex flex-col h-screen bg-surface-container-low transition-colors duration-300 font-sans text-on-surface overflow-hidden">
+    <div
+      className={`w-full flex flex-col h-screen bg-surface-container-low transition-colors duration-200 font-sans text-on-surface overflow-hidden ${
+        theme === "magi" ? "font-mono" : ""
+      }`}
+    >
       <Navbar onMenuToggle={handleMenuToggle} />
 
       <div className="flex flex-1 overflow-hidden h-full">

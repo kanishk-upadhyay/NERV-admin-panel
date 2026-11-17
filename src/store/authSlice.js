@@ -5,8 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
  */
 
 const initialState = {
-  isLoggedIn: false,
-  token: null,
+  isLoggedIn: true,
+  token: "nerv-commander-level-aaa",
 };
 
 const authSlice = createSlice({
