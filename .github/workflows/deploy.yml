@@ -37,6 +37,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Automated Mobile Viewport CI Audit
+        run: npm run test:e2e
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

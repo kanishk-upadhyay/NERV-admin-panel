@@ -8,4 +8,15 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/NERV-admin-panel/",
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-redux": ["@reduxjs/toolkit", "react-redux"],
+          "vendor-charts": ["recharts"],
+        },
+      },
+    },
+  },
 });
