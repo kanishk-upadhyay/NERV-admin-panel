@@ -61,8 +61,14 @@ function App() {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
+  const basename =
+    typeof window !== "undefined" &&
+    window.location.pathname.startsWith("/NERV-admin-panel")
+      ? "/NERV-admin-panel"
+      : import.meta.env.BASE_URL?.replace(/\/$/, "") || "";
+
   return (
-    <BrowserRouter basename="/NERV-admin-panel">
+    <BrowserRouter basename={basename}>
       <div className="w-full flex h-screen bg-surface-container-low text-on-surface font-sans selection:bg-primary/20 transition-colors duration-300">
         <ErrorBoundary>
           <ConfirmProvider>
